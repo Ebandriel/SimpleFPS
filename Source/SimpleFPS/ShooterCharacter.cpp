@@ -2,7 +2,7 @@
 
 
 #include "ShooterCharacter.h"
-
+#include "Gun.h"
 // Sets default values
 AShooterCharacter::AShooterCharacter()
 {
@@ -14,8 +14,7 @@ AShooterCharacter::AShooterCharacter()
 // Called when the game starts or when spawned
 void AShooterCharacter::BeginPlay()
 {
-	Super::BeginPlay();
-	
+	Super::BeginPlay();	
 }
 
 // Called every frame
