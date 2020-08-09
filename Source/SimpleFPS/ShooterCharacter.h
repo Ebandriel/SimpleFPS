@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "ShooterCharacter.generated.h"
-
+class AGun;
 UCLASS()
 class SIMPLEFPS_API AShooterCharacter : public ACharacter
 {
@@ -36,4 +36,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float RotateSpeed = 20.0f;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AGun> GunClass;
+	UPROPERTY()
+	AGun* Gun;
 };

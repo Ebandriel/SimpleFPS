@@ -2,7 +2,7 @@
 
 
 #include "Gun.h"
-
+#include "Kismet/GameplayStatics.h"
 // Sets default values
 AGun::AGun()
 {
@@ -12,6 +12,12 @@ AGun::AGun()
 	SetRootComponent(Root);
 	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(Root);
+}
+
+void AGun::PullTrigger()
+{
+	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
+	UE_LOG(LogTemp, Warning, TEXT("Youve been shot!"));
 }
 
 // Called when the game starts or when spawned
