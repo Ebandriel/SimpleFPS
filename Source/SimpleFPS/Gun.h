@@ -30,6 +30,8 @@ private:
 	USkeletalMeshComponent* Mesh;
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* MuzzleFlash;
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* Impact;
 	UPROPERTY(EditDefaultsOnly, Category="Balistic Stats")
 	float MaxRange = 1000.0f;
 };
