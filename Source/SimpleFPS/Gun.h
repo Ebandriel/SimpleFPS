@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Gun.generated.h"
 class UParticleSystemComponent;
+
 UCLASS()
 class SIMPLEFPS_API AGun : public AActor
 {
@@ -29,4 +30,6 @@ private:
 	USkeletalMeshComponent* Mesh;
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* MuzzleFlash;
+	UPROPERTY(EditDefaultsOnly, Category="Balistic Stats")
+	float MaxRange = 1000.0f;
 };

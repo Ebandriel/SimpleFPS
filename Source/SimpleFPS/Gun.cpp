@@ -3,6 +3,8 @@
 
 #include "Gun.h"
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
+#include "Engine/World.h"
 // Sets default values
 AGun::AGun()
 {
@@ -17,7 +19,28 @@ AGun::AGun()
 void AGun::PullTrigger()
 {
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
-	UE_LOG(LogTemp, Warning, TEXT("Youve been shot!"));
+	APawn* OwnerPawn = Cast<APawn>(GetOwner());
+	if (OwnerPawn == nullptr)
+	{
+		return;
+	}
+	AController* OwnerController = OwnerPawn->GetController();
+	if (OwnerController == nullptr)
+	{
+		return;
+	}
+	FVector OwnerLocation;
+	FRotator OwnerRotation;
+	OwnerController->GetPlayerViewPoint(OwnerLocation,OwnerRotation);
+
+	FVector End = OwnerLocation + OwnerRotation.Vector() * MaxRange;
+	//Line trace
+	FHitResult Target;
+	if (GetWorld()->LineTraceSingleByChannel(Target, OwnerLocation, End, ECollisionChannel::ECC_GameTraceChannel1))
+	{
+		DrawDebugPoint(GetWorld(), Target.Location, 20, FColor::Red, true);
+	}
+	
 }
 
 // Called when the game starts or when spawned
