@@ -34,4 +34,6 @@ private:
 	UParticleSystem* Impact;
 	UPROPERTY(EditDefaultsOnly, Category="Balistic Stats")
 	float MaxRange = 1000.0f;
+	UPROPERTY(EditDefaultsOnly, Category="Balistic Stats")
+	float Damage = 50.0f;
 };

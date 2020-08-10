@@ -22,6 +22,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser);
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -36,6 +37,12 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float RotateSpeed = 20.0f;
+	UPROPERTY(EditAnywhere)
+	float MaxHealth = 300.0f;
+
+	UPROPERTY(VisibleAnywhere)
+	float Health;
+
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
