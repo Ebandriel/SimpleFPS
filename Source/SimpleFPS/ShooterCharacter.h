@@ -20,6 +20,10 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+
+	UFUNCTION(BlueprintPure)
+	bool IsDead() const;
+	bool IsCrouched() const;
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser);
@@ -39,11 +43,10 @@ private:
 	float RotateSpeed = 20.0f;
 	UPROPERTY(EditAnywhere)
 	float MaxHealth = 300.0f;
-
 	UPROPERTY(VisibleAnywhere)
 	float Health;
 
-
+	bool Crouched;
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
 	UPROPERTY()

@@ -20,6 +20,17 @@ void AShooterCharacter::BeginPlay()
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
 	Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Gun->SetOwner(this);
+	Crouched = false;
+}
+
+bool AShooterCharacter::IsDead() const
+{
+	return Health <= 0.0f;
+}
+
+bool AShooterCharacter::IsCrouched() const
+{
+	return Crouched;
 }
 
 // Called every frame
@@ -34,10 +45,6 @@ float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	float DamageToApply = Super::TakeDamage(DamageAmount,DamageEvent,EventInstigator,DamageCauser);
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
-	if (Health <= 0)
-	{
-		Health = 0.0f;
-	}
 	UE_LOG(LogTemp, Warning, TEXT("%f Damage Taken %f Health Remaining"),DamageAmount,Health);
 	return 0.0f;
 }
@@ -84,12 +91,12 @@ void AShooterCharacter::LookRightRate(float AxisValue)
 
 void AShooterCharacter::Crouch()
 {
-
+	Crouched = true;
 }
 
 void AShooterCharacter::Stand()
 {
-
+	Crouched = false;
 }
 
 
