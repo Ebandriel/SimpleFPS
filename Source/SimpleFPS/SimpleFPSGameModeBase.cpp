@@ -3,3 +3,7 @@
 
 #include "SimpleFPSGameModeBase.h"
 
+void ASimpleFPSGameModeBase::PawnKilled(APawn* PawnKilled)
+{
+
+}

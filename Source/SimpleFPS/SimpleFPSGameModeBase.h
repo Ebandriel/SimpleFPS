@@ -13,5 +13,6 @@ UCLASS()
 class SIMPLEFPS_API ASimpleFPSGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+public:
+	virtual void PawnKilled(APawn* PawnKilled);
 };

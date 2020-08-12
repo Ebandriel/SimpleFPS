@@ -3,6 +3,8 @@
 
 #include "ShooterCharacter.h"
 #include "Gun.h"
+#include "Components/CapsuleComponent.h"
+#include "SimpleFPSGameModeBase.h"
 // Sets default values
 AShooterCharacter::AShooterCharacter()
 {
@@ -45,8 +47,17 @@ float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	float DamageToApply = Super::TakeDamage(DamageAmount,DamageEvent,EventInstigator,DamageCauser);
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
-	UE_LOG(LogTemp, Warning, TEXT("%f Damage Taken %f Health Remaining"),DamageAmount,Health);
-	return 0.0f;
+	if (IsDead())
+	{
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		ASimpleFPSGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleFPSGameModeBase>();
+		if (GameMode != nullptr)
+		{
+			GameMode->PawnKilled(this);
+		}
+	}
+	return DamageToApply;
 }
 
 // Called to bind functionality to input

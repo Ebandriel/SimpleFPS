@@ -17,4 +17,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 protected:
 	virtual void BeginPlay() override;
+private:
+	UPROPERTY(EditAnywhere)
+	class UBehaviorTree* AIBehavior;
+
+	APawn* PlayerPawn;
+	APawn* ThisPawn;
 };

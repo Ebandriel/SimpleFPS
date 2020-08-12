@@ -30,6 +30,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	void Fire();
 private:
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
@@ -37,7 +39,7 @@ private:
 	void LookRightRate(float AxisValue);
 	void Crouch();
 	void Stand();
-	void Fire();
+	
 
 	UPROPERTY(EditAnywhere)
 	float RotateSpeed = 20.0f;
