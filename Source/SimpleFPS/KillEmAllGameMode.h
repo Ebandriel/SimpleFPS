@@ -13,5 +13,9 @@ UCLASS()
 class SIMPLEFPS_API AKillEmAllGameMode : public ASimpleFPSGameModeBase
 {
 	GENERATED_BODY()
-	
+public:
+	virtual void PawnKilled(APawn* PawnKilled) override;
+
+private:
+	virtual void EndGame(bool bIsPlayerWinner) override;
 };

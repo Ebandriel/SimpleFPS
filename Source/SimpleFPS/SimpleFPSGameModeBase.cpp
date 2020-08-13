@@ -7,3 +7,8 @@ void ASimpleFPSGameModeBase::PawnKilled(APawn* PawnKilled)
 {
 
 }
+
+void ASimpleFPSGameModeBase::EndGame(bool bIsPlayerWinner)
+{
+
+}

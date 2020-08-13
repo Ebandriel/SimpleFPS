@@ -49,13 +49,14 @@ float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	Health -= DamageToApply;
 	if (IsDead())
 	{
-		DetachFromControllerPendingDestroy();
-		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	
 		ASimpleFPSGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleFPSGameModeBase>();
 		if (GameMode != nullptr)
 		{
 			GameMode->PawnKilled(this);
 		}
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 	return DamageToApply;
 }
