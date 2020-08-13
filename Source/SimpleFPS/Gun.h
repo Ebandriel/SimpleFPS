@@ -28,12 +28,21 @@ private:
 	USceneComponent* Root;
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* Mesh;
-	UPROPERTY(EditAnywhere)
+
+	UPROPERTY(EditAnywhere, Category="Efects")
 	UParticleSystem* MuzzleFlash;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="Efects")
+	TArray<USoundBase*> MuzzleSounds;
+	UPROPERTY(EditAnywhere, Category="Efects")
 	UParticleSystem* Impact;
+	UPROPERTY(EditAnywhere, Category="Efects")
+	TArray<USoundBase*> ImpactSounds;
 	UPROPERTY(EditDefaultsOnly, Category="Balistic Stats")
 	float MaxRange = 1000.0f;
 	UPROPERTY(EditDefaultsOnly, Category="Balistic Stats")
 	float Damage = 50.0f;
+
+	bool GunTrace(FHitResult& Target, FVector& ShotDirection);
+	AController* GetOwnerController() const;
+
 };
