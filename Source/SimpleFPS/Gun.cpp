@@ -15,15 +15,16 @@ AGun::AGun()
 	SetRootComponent(Root);
 	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(Root);
+
 }
 
 void AGun::PullTrigger()
 {
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
-	if (MuzzleSounds.Num()>0)
+	if (MuzzleSounds != nullptr)
 	{
-		int MSound = FMath::RandRange(1, MuzzleSounds.Num()) - 1;
-		UGameplayStatics::SpawnSoundAttached(MuzzleSounds[MSound], Mesh, TEXT("MuzzleFlashSocket"));
+		
+		UGameplayStatics::SpawnSoundAttached(MuzzleSounds, Mesh, TEXT("MuzzleFlashSocket"));
 	}
 	FHitResult Target;
 	FVector ShotDirection;
@@ -31,10 +32,10 @@ void AGun::PullTrigger()
 	{
 		
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), Impact, Target.Location, ShotDirection.Rotation());
-		if (ImpactSounds.Num() > 0)
+		if (ImpactSounds != nullptr)
 		{
-			int ISound = FMath::RandRange(1, ImpactSounds.Num()) - 1;
-			UGameplayStatics::SpawnSoundAtLocation(GetWorld(), ImpactSounds[ISound], Target.Location, ShotDirection.Rotation());
+			
+			UGameplayStatics::SpawnSoundAtLocation(GetWorld(), ImpactSounds, Target.Location, ShotDirection.Rotation());
 		}
 		AActor* HItActor = Target.GetActor();
 		if (HItActor != nullptr)

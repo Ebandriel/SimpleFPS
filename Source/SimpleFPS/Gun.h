@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Gun.generated.h"
 class UParticleSystemComponent;
-
+class USoundCue;
 UCLASS()
 class SIMPLEFPS_API AGun : public AActor
 {
@@ -32,11 +32,11 @@ private:
 	UPROPERTY(EditAnywhere, Category="Efects")
 	UParticleSystem* MuzzleFlash;
 	UPROPERTY(EditAnywhere, Category="Efects")
-	TArray<USoundBase*> MuzzleSounds;
+	USoundBase* MuzzleSounds;
 	UPROPERTY(EditAnywhere, Category="Efects")
 	UParticleSystem* Impact;
 	UPROPERTY(EditAnywhere, Category="Efects")
-	TArray<USoundBase*> ImpactSounds;
+	USoundBase* ImpactSounds;
 	UPROPERTY(EditDefaultsOnly, Category="Balistic Stats")
 	float MaxRange = 1000.0f;
 	UPROPERTY(EditDefaultsOnly, Category="Balistic Stats")
